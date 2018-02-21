@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+
 namespace lcsc {
 
 	uint64_t uniform_int_distribution::sample() {

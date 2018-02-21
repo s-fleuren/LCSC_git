@@ -39,6 +39,9 @@
     <ClInclude Include="rng.hpp">
       <Filter>Header Files\rng</Filter>
     </ClInclude>
+    <ClInclude Include="tests.hpp">
+      <Filter>Header Files\rng</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -47,11 +50,14 @@
     <ClCompile Include="LCSC.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="distributions.cpp">
-      <Filter>Source Files\rng</Filter>
-    </ClCompile>
     <ClCompile Include="lcrng.cpp">
       <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="tests.cpp">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="distributions.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
