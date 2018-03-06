@@ -1,12 +1,11 @@
 #include "stdafx.h"
+#include <math.h>
 
 
 namespace lcsc {
 
 	uint64_t uniform_int_distribution::sample() {
-		double value = engine_.next();
-		value = min_ + (max_ - min_) * value;
-		return (uint64_t)value;
+		return (uint64_t)engine_.next_int(min_, max_);
 	}
 
 	double uniform_real_distribution::sample() {
@@ -15,7 +14,28 @@ namespace lcsc {
 		return value;
 	}
 
+	double exponential_distribution::sample() {
+		double u = engine_.next();
+		return -log(u) / lambda_;
+	}
 
+	double normal_distribution::sample() {
+		double y2 = exp_dis_.sample();
+		double y = y2 - pow(y1_ - 1, 2) / 2;
+		while (y < 0)
+		{
+			y1_ = exp_dis_.sample();
+			y2 = exp_dis_.sample();
+			y = y2 - pow(y1_ - 1, 2) / 2;
+		}
+		double z = y1_;
+		if (engine_.next() < 0.5)
+		{
+			z = -z;
+		}
+		y1_ = y;
+		return sigma_ * z + mean_;
+	}
 }
 
 
