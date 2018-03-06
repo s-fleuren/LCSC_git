@@ -39,6 +39,9 @@
     <ClInclude Include="tests.hpp">
       <Filter>Header Files\rng</Filter>
     </ClInclude>
+    <ClInclude Include="misc.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -55,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="rng.cpp">
       <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="misc.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

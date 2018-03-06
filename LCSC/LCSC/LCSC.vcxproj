@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="distributions.hpp" />
     <ClInclude Include="lcsc.hpp" />
+    <ClInclude Include="misc.hpp" />
     <ClInclude Include="rng.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -157,6 +158,7 @@
   <ItemGroup>
     <ClCompile Include="distributions.cpp" />
     <ClCompile Include="LCSC.cpp" />
+    <ClCompile Include="misc.cpp" />
     <ClCompile Include="rng.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
