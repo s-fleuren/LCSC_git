@@ -154,6 +154,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="tests.hpp" />
+    <ClInclude Include="xorshift.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="distributions.cpp" />
@@ -166,6 +167,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="tests.cpp" />
+    <ClCompile Include="xorshift.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

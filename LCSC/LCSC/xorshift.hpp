@@ -5,21 +5,17 @@
 
 namespace lcsc {
 
-	class lcrng : public rng_engine {
+	class xorshift : public rng_engine {
 	public:
-		lcrng(const int a, const int c, const int m, uint64_t seed) :
-			a_(a), c_(c), m_(m), x_(seed) {}
+		xorshift(uint64_t seed) :
+			x_(seed) {}
 
 		uint64_t next_int(uint64_t min, uint64_t max) override;
 
 		double next() override;
 
 	private:
-		int a_;
-		int c_;
-		int m_;
 		uint64_t x_;
-
 
 	};
 
