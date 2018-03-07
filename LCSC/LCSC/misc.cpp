@@ -11,7 +11,7 @@ namespace lcsc {
 		i |= (i >> 16);
 		i |= (i >> 32);
 		unsigned long index;
-		_BitScanReverse64(&index, (1 << 63) - 1);
+		_BitScanReverse64(&index, ((uint64_t)1 << 63) - 1);
 		return index;
 	}
 

@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include <intrin.h>;
-#include <math.h>;
+#include <intrin.h>
+#include <math.h>
 
 namespace lcsc {
 
@@ -65,7 +65,7 @@ namespace lcsc {
 		return (double)x / m_;
 	}
 
-	uint64_t xorshift::next_int(uint64_t min = 0, uint64_t max = (1 << 63) - 1) {
+	uint64_t xorshift::next_int(uint64_t min = 0, uint64_t max = ((uint64_t)1 << 63) - 1) {
 		if (min > max)
 		{
 			printf("Error: value of min is greater than the value of max. Press enter to exit.");
@@ -73,7 +73,7 @@ namespace lcsc {
 			exit(1);
 		}
 		uint64_t range = max - min;
-		if (range == (1 << 63) - 1)
+		if (range == ((uint64_t)1 << 63) - 1)
 		{
 			x_ ^= x_ >> 12;
 			x_ ^= x_ << 25;
@@ -94,7 +94,7 @@ namespace lcsc {
 
 	double xorshift::next_double() {
 		uint64_t x = next_int();
-		uint64_t m = ((1 << 63) - 1);
+		uint64_t m = (((uint64_t)1 << 63) - 1);
 		return (double)x / m;
 	}
 
