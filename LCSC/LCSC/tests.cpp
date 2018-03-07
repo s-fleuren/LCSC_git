@@ -9,7 +9,7 @@ namespace lcsc {
 		std::vector<uint64_t> bins(M_);
 		for (uint64_t i = 0; i < n; i++)
 		{
-			double sample = engine_.next();
+			double sample = engine_.next_double();
 			uint64_t bin = (uint64_t)(sample*M_);
 			bins[bin] += 1;
 		}

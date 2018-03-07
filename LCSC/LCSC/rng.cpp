@@ -4,7 +4,7 @@
 
 namespace lcsc {
 
-	double lcrng::next() {
+	double lcrng::next_double() {
 		x_ = (a_*x_ + c_) % m_;
 		return x_ / (m_ - 1.0);
 	}
@@ -16,23 +16,53 @@ namespace lcsc {
 			getchar();
 			exit(1);
 		}
-		uint64_t period = max - min;
-		if (period >= m_)
+		uint64_t range = max - min;
+		if (range >= m_)
 		{
-			printf("Error: period is too large. Press any key to exit.");
+			printf("Error: range is too large. Press any key to exit.");
 			getchar();
 			exit(1);
 		}
-		unsigned long index;
-		_BitScanReverse64(&index, period);//2**i <= period < 2**(i+1)
-		while (1 > 0)
+		if (range == m_ - 1)
 		{
 			x_ = (a_*x_ + c_) % m_;
-			if ((x_ >> index) <= period)
-			{
-				return min;
-			}
+			return x_;
 		}
+		return (uint64_t)(next_double()*range + min);
+	}
+
+	uint64_t park_miller::next_int(uint64_t min = 0, uint64_t max = (1 << 31) - 2) {
+		if (min > max)
+		{
+			printf("Error: value of min is greater than the value of max. Press enter to exit.");
+			getchar();
+			exit(1);
+		}
+		uint64_t range = max - min;
+		if (range >= m_)
+		{
+			printf("Error: range is too large. Press any key to exit.");
+			getchar();
+			exit(1);
+		}
+		if (range == m_ - 1)
+		{
+			x_ = (a_ * (x_ % q_) - r_ * (x_ / q_) + m_) % m_;//Schrage’s trick
+			return x_ + min;
+		}
+		unsigned long index;
+		_BitScanReverse64(&index, range);//2**index <= range < 2**(index+1)
+		while (1 > 0)
+		{
+			x_ = (a_ * (x_ % q_) - r_ * (x_ / q_) + m_) % m_;
+			uint64_t output = (x_ >> (63 - index)) + min;
+			if (output <= max) return output;
+		}
+	}
+
+	double park_miller::next_double() {
+		uint64_t x = next_int();
+		return (double)x / m_;
 	}
 
 	uint64_t xorshift::next_int(uint64_t min = 0, uint64_t max = (1 << 63) - 1) {
@@ -42,8 +72,8 @@ namespace lcsc {
 			getchar();
 			exit(1);
 		}
-		uint64_t period = max - min;
-		if (period == (1 << 63) - 1)
+		uint64_t range = max - min;
+		if (range == (1 << 63) - 1)
 		{
 			x_ ^= x_ >> 12;
 			x_ ^= x_ << 25;
@@ -51,7 +81,7 @@ namespace lcsc {
 			return x_;
 		}
 		unsigned long index;
-		_BitScanReverse64(&index, period);//2**index <= period < 2**(index+1)
+		_BitScanReverse64(&index, range);//2**index <= range < 2**(index+1)
 		while (1 > 0)
 		{
 			x_ ^= x_ >> 12;
@@ -62,7 +92,7 @@ namespace lcsc {
 		}
 	}
 
-	double xorshift::next() {
+	double xorshift::next_double() {
 		uint64_t x = next_int();
 		uint64_t m = ((1 << 63) - 1);
 		return (double)x / m;

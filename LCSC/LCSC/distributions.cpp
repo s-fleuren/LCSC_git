@@ -9,17 +9,18 @@ namespace lcsc {
 	}
 
 	double uniform_real_distribution::sample() {
-		double value = engine_.next();
+		double value = engine_.next_double();
 		value = min_ + (max_ - min_) * value;
 		return value;
 	}
 
 	double exponential_distribution::sample() {
-		double u = engine_.next();
+		double u = engine_.next_double();
 		return -log(u) / lambda_;
 	}
 
 	double normal_distribution::sample() {
+	//http://www.columbia.edu/~ks20/4703-Sigman/4703-07-Notes-ARM.pdf
 		double y2 = exp_dis_.sample();
 		double y = y2 - pow(y1_ - 1, 2) / 2;
 		while (y < 0)
@@ -29,7 +30,7 @@ namespace lcsc {
 			y = y2 - pow(y1_ - 1, 2) / 2;
 		}
 		double z = y1_;
-		if (engine_.next() < 0.5)
+		if (engine_.next_double() < 0.5)
 		{
 			z = -z;
 		}
