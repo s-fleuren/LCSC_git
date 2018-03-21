@@ -30,9 +30,6 @@
     <ClInclude Include="lcsc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="distributions.hpp">
-      <Filter>Header Files\rng</Filter>
-    </ClInclude>
     <ClInclude Include="rng.hpp">
       <Filter>Header Files\rng</Filter>
     </ClInclude>
@@ -40,6 +37,9 @@
       <Filter>Header Files\rng</Filter>
     </ClInclude>
     <ClInclude Include="misc.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="integration.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,13 +53,13 @@
     <ClCompile Include="tests.cpp">
       <Filter>Source Files\rng</Filter>
     </ClCompile>
-    <ClCompile Include="distributions.cpp">
-      <Filter>Source Files\rng</Filter>
-    </ClCompile>
     <ClCompile Include="rng.cpp">
       <Filter>Source Files\rng</Filter>
     </ClCompile>
     <ClCompile Include="misc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="integration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

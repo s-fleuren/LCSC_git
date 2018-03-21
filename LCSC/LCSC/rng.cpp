@@ -98,4 +98,34 @@ namespace lcsc {
 		return (double)x / m;
 	}
 
+	//distribution samples
+
+	double rng_engine::next_double(double min, double max)
+	{
+		double value = next_double();
+		value = min + (max - min) * value;
+		return value;
+	}
+	double rng_engine::next_exponential(double lambda)
+	{
+		double u = next_double();
+		return -log(u) / lambda;
+	}
+	double rng_engine::next_normal(double mean, double sigma)
+	{
+		//http://www.columbia.edu/~ks20/4703-Sigman/4703-07-Notes-ARM.pdf
+		double y1, y2;
+		double y = -1;
+		while (y < 0)
+		{
+			y1 = next_exponential(1);
+			y2 = next_exponential(1);
+			y = y2 - pow(y1 - 1, 2) / 2;
+		}
+		if (next_double() < 0.5)
+		{
+			y1 = -y1;
+		}
+		return sigma * y1 + mean;
+	}
 } // namespace lcsc
