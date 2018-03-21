@@ -7,7 +7,15 @@ namespace lcsc {
 	class rng_engine {
 	public:
 		virtual uint64_t next_int(uint64_t min, uint64_t max) = 0;
+		//returns a uniform distributed semirandom integer in [min, max]
 		virtual double next_double() = 0;
+		//returns a uniform distributed semirandom real number in [0,1]
+		double next_double(double min, double max);
+		//returns a uniform distributed semirandom real number in [min,max]
+		double next_exponential(double lambda);
+		//returns a exponentially distributed semirandom real number with rate parameter lambda
+		double next_normal(double mean, double sigma);
+		//returns a normally distributed semirandom real number
 	};
 
 	class lcrng : public rng_engine {

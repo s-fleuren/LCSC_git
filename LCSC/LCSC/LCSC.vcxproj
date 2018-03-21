@@ -147,7 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="distributions.hpp" />
+    <ClInclude Include="integration.hpp" />
     <ClInclude Include="lcsc.hpp" />
     <ClInclude Include="misc.hpp" />
     <ClInclude Include="rng.hpp" />
@@ -156,7 +156,7 @@
     <ClInclude Include="tests.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="distributions.cpp" />
+    <ClCompile Include="integration.cpp" />
     <ClCompile Include="LCSC.cpp" />
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="rng.cpp" />
