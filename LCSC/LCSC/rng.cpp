@@ -6,7 +6,7 @@ namespace lcsc {
 
 	double lcrng::next_double() {
 		x_ = (a_*x_ + c_) % m_;
-		return x_ / (m_ - 1.0);
+		return x_ / m_;
 	}
 
 	uint64_t lcrng::next_int(uint64_t min, uint64_t max) {
@@ -94,7 +94,7 @@ namespace lcsc {
 
 	double xorshift::next_double() {
 		uint64_t x = next_int();
-		uint64_t m = (((uint64_t)1 << 63) - 1);
+		uint64_t m = (((uint64_t)1 << 64) - 1);
 		return (double)x / m;
 	}
 
