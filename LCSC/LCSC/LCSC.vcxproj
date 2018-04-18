@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="genetic_algorithm.hpp" />
     <ClInclude Include="integration.hpp" />
     <ClInclude Include="lcsc.hpp" />
     <ClInclude Include="misc.hpp" />
