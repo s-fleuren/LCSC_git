@@ -6,7 +6,7 @@ namespace lcsc {
 
 	double lcrng::next_double() {
 		x_ = (a_*x_ + c_) % m_;
-		return x_ / (m_ - 1.0);
+		return x_ / m_;
 	}
 
 	uint64_t lcrng::next_int(uint64_t min, uint64_t max) {
@@ -94,9 +94,27 @@ namespace lcsc {
 
 	double xorshift::next_double() {
 		uint64_t x = next_int();
-		uint64_t m = (((uint64_t)1 << 63) - 1);
+		uint64_t m = (((uint64_t)1 << 64) - 1);
 		return (double)x / m;
 	}
+
+	uint64_t extern_rng::next_int(uint64_t min, uint64_t max)
+	{
+		if (min > max)
+		{
+			printf("Error: value of min is greater than the value of max. Press enter to exit.");
+			getchar();
+			exit(1);
+		}
+		uint64_t range = max - min;
+		return (uint64_t)(next_double()*range + min);
+	}
+	double extern_rng::next_double()
+	{
+		n_++;
+		return f_(n_ - 1);
+	}
+
 
 	//distribution samples
 
@@ -105,6 +123,20 @@ namespace lcsc {
 		double value = next_double();
 		value = min + (max - min) * value;
 		return value;
+	}
+	std::vector<double> rng_engine::next_multi_double(std::vector<double> min, std::vector<double> max)
+	{
+		std::size_t dim = min.size();
+		auto output = std::vector<double>(dim);
+		if (dim != max.size())
+		{
+			std::cout << "Warning: min and max have different dimensions.\n";
+		}
+		for (std::size_t i = 0; i < dim; i++)
+		{
+			output[i] = next_double(min[i], max[i]);
+		}
+		return output;
 	}
 	double rng_engine::next_exponential(double lambda)
 	{
@@ -128,4 +160,5 @@ namespace lcsc {
 		}
 		return sigma * y1 + mean;
 	}
+	
 } // namespace lcsc

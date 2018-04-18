@@ -286,3 +286,5 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+/LCSC/LCSC/park_miller_generated_numbers.txt
+/LCSC/LCSC/xorshift_generated_numbers.txt

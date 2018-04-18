@@ -1,21 +1,25 @@
 #pragma once
 
 #include <cstdint>
+#include <vector>
+#include <functional>
 
 namespace lcsc {
 
 	class rng_engine {
 	public:
 		virtual uint64_t next_int(uint64_t min, uint64_t max) = 0;
-		//returns a uniform distributed semirandom integer in [min, max]
+		//returns a uniform distributed pseudo random integer in [min, max]
 		virtual double next_double() = 0;
-		//returns a uniform distributed semirandom real number in [0,1]
+		//returns a uniform distributed pseudo random real number in [0,1)
 		double next_double(double min, double max);
-		//returns a uniform distributed semirandom real number in [min,max]
+		//returns a uniform distributed pseudo random real number in [min,max)
+		std::vector<double> next_multi_double(std::vector<double> min, std::vector<double> max);
+		//returns a uniform distributed pseudo random real number in [min[0],max[0]) X [min[1],max[1]) X ... X [min[n - 1],max[n - 1])
 		double next_exponential(double lambda);
-		//returns a exponentially distributed semirandom real number with rate parameter lambda
+		//returns a exponentially distributed pseudo random real number with rate parameter lambda
 		double next_normal(double mean, double sigma);
-		//returns a normally distributed semirandom real number
+		//returns a normally distributed pseudo random real number
 	};
 
 	class lcrng : public rng_engine {
@@ -78,6 +82,20 @@ namespace lcsc {
 	private:
 		uint64_t x_;
 
+	};
+
+	class extern_rng : public rng_engine {
+	public:
+		extern_rng(std::function<double(int)> &f, int n) :
+			f_(f), n_(n) {}
+
+		uint64_t next_int(uint64_t min, uint64_t max) override;
+
+		double next_double() override;
+
+	private:
+		std::function<double(int)> & f_;
+		int n_;
 	};
 
 } // namespace lcsc
