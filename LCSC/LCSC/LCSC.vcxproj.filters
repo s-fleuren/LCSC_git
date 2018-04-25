@@ -45,6 +45,9 @@
     <ClInclude Include="genetic_algorithm.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="bitstring.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

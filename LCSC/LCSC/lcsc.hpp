@@ -5,4 +5,6 @@
 #include "tests.hpp"
 #include "misc.hpp"
 #include "integration.hpp"
+#include "bitstring.hpp"
+#include "genetic_algorithm.hpp"
 #include <cstdint>
