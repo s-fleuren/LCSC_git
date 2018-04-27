@@ -6,12 +6,13 @@ namespace lcsc {
 	class bitstring {
 	public:
 		bitstring(T variable, int n) :
+			bits_(0)
 		{}
 
 		T genotype();
 
 	private:
-		std::vector<uint8_t> bits_;
+		T bits_; //Fix this later
 	};
 
 }

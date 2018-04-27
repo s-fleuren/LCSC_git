@@ -1,15 +1,16 @@
 #pragma once
 
-#include <functional>
+//#include <functional>
 #include <vector>
 #include <cstdint>
 #include <utility>
+
 
 namespace lcsc {
 
 	template <typename T>
 	using objective_fn = std::function<double(bitstring<T>)>;
-
+	
 	template <typename T>
 	using mutation_fn = std::function<bitstring<T>(bitstring<T>)>;
 
@@ -20,16 +21,13 @@ namespace lcsc {
 	template <typename T>
 	using recombination_fn = std::function<std::pair<bitstring<T>, bitstring<T>>
 		(std::pair<bitstring<T>, bitstring<T>>)>;
-
-	template <typename T>
-	using stop_fn = std::function<bool>;
-
+	
 	template <typename T>
 	class genetic_algorithm {
 	public:
 		genetic_algorithm(rng_engine & engine, objective_fn & objective_function);
 		bitstring<T> start(std::vector<bitstring<T>> current_generation);
-
+	
 	private:
 		rng_engine & engine_;
 		std::vector<bitstring<T>> population_;
@@ -38,7 +36,6 @@ namespace lcsc {
 		selection_fn & selection_function_;
 		uint64_t no_selected_parents_;
 		recombination_fn & recombination_function_;
-		stop_fn & stop_function_;
 	};
 
 	template<typename T>
@@ -77,6 +74,6 @@ namespace lcsc {
 			}
 		}
 		return output;
-	}
+	}//*/
 
 } // namespace lcsc
