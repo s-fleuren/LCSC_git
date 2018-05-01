@@ -5,6 +5,6 @@
 #include "tests.hpp"
 #include "misc.hpp"
 #include "integration.hpp"
-#include "bitstring.hpp"
+#include "chromosome.hpp"
 //#include "genetic_algorithm.hpp"
 #include "genetic_algorithm2.hpp"

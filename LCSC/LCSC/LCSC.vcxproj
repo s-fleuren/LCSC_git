@@ -147,7 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="bitstring.hpp" />
+    <ClInclude Include="chromosome.hpp" />
     <ClInclude Include="genetic_algorithm2.hpp" />
     <ClInclude Include="integration.hpp" />
     <ClInclude Include="lcsc.hpp" />
@@ -158,6 +158,7 @@
     <ClInclude Include="tests.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="chromosome.cpp" />
     <ClCompile Include="genetic_algorithm2.cpp" />
     <ClCompile Include="integration.cpp" />
     <ClCompile Include="LCSC.cpp" />
