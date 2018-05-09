@@ -2,13 +2,18 @@
 
 #include <functional>
 #include <vector>
+#include <memory>
 
 namespace lcsc {
-	class genetic_algorithm {
+	class genetic_algorithm{
 	public:
-		genetic_algorithm(std::function<double(int)> & objective_function);
+		genetic_algorithm(std::function<double(double)>& fitness_function, rng_engine & engine, std::vector<chromosome*> chromosomes);
+
+		//Helper functions:
+		double compute_total_fitness();
 
 		//Selection functions:
+		void selection_roulette();
 
 		//Recombination functions:
 
@@ -30,7 +35,9 @@ namespace lcsc {
 		std::function<int(int)> mutation_function;
 
 	private:
-		std::function<double(int)> & objective_function_;
-
+		std::function<double(double)> & fitness_function_;
+		rng_engine & engine_;
+		std::vector<chromosome*> chromosomes_;
+		int generation_size_;
 	};
 }

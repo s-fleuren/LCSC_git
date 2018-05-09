@@ -23,9 +23,9 @@ namespace lcsc {
 		(std::pair<bitstring<T>, bitstring<T>>)>;
 	
 	template <typename T>
-	class genetic_algorithm {
+	class genetic_algorithm, , , ,  {
 	public:
-		genetic_algorithm(rng_engine & engine, objective_fn & objective_function);
+		genetic_algorithm, , , , (rng_engine & engine, objective_fn & objective_function);
 		bitstring<T> start(std::vector<bitstring<T>> current_generation);
 	
 	private:
@@ -39,7 +39,7 @@ namespace lcsc {
 	};
 
 	template<typename T>
-	inline genetic_algorithm<T>::genetic_algorithm(rng_engine & engine, objective_fn & objective_function) :
+	inline genetic_algorithm, , , , <T>::genetic_algorithm, , , , (rng_engine & engine, objective_fn & objective_function) :
 		engine_(engine), objective_function_(objective_function)
 	{
 		mutation_function_ = [&](bitstring<T> chromosome) -> bitstring<T> { return chromosome; };
@@ -49,7 +49,7 @@ namespace lcsc {
 	}
 
 	template<typename T>
-	inline bitstring<T> genetic_algorithm<T>::start(std::vector<bitstring<T>> initial_generation)
+	inline bitstring<T> genetic_algorithm, , , , <T>::start(std::vector<bitstring<T>> initial_generation)
 	{
 		auto population_size = current_generation.size;
 		auto next_generation = std::vector<bitstring<T>>(population_size);
