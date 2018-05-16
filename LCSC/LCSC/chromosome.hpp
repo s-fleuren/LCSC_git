@@ -12,23 +12,43 @@ namespace lcsc {
 		virtual void mutate(double p) = 0;
 
 	protected:
-		virtual void recombine(chromosome* partner) = 0;
+		friend class genetic_algorithm;
+		virtual void clone(chromosome* other) = 0;
+		virtual std::pair<chromosome, chromosome> recombine(chromosome* partner, int crossover_point) = 0;
+
+		bool selected;
 	};
 
 	class bitstring64 : public chromosome {
 	public:
-		bitstring64(uint64_t genotype, std::function<double(uint64_t)> & objective_function, rng_engine & engine);
-		bitstring64(std::function<double(uint64_t)> & objective_function, rng_engine & engine);
+		bitstring64(uint64_t genotype, std::function<double(uint64_t)> & objective_function, rng_engine & engine, const int length);
+		bitstring64(std::function<double(uint64_t)> & objective_function, rng_engine & engine, const int length);
 		double objective_value() override;
 		void printbits() override;
 		void mutate(double p) override;
+
+		//copy constructors
+		//bitstring64(const bitstring64& other) : 
+		//	objective_function_(other.objective_function_), engine_(other.engine_), bits(other.bits) {}
+		bitstring64& operator=(const bitstring64& other)
+		{
+			objective_function_ = other.objective_function_;
+			engine_ = other.engine_;
+			bits = other.bits;
+			length_ = other.length_;
+			selected = other.selected;
+			return *this;
+		}
 
 		uint64_t bits;
 
 	private:
 		friend class genetic_algorithm;
-		void recombine(chromosome* partner) override;
-		std::function<double(uint64_t)> & objective_function_;
-		rng_engine & engine_;
+		std::pair<chromosome, chromosome> recombine(chromosome* partner, int crossover_point) override;
+		void clone(chromosome* other) override;
+
+		std::function<double(uint64_t)>& objective_function_;
+		rng_engine& engine_;
+		int length_;
 	};
 }

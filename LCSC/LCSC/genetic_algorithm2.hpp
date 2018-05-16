@@ -7,21 +7,23 @@
 namespace lcsc {
 	class genetic_algorithm{
 	public:
-		genetic_algorithm(std::function<double(double)>& fitness_function, rng_engine & engine, std::vector<chromosome*> chromosomes);
+		genetic_algorithm(std::function<double(double)>& fitness_function, rng_engine & engine, std::vector<chromosome*>& chromosomes, 
+			std::vector<chromosome*>& chromosomes2, double recombination_chance, int elitism);
 
 		//Helper functions:
 		double compute_total_fitness();
+		chromosome* best_chromosome();
 
 		//Selection functions:
-		void selection_roulette();
-
-		//Recombination functions:
+		int selection_roulette();
 
 		//Mutation functions:
 		int mutation_identity(int chromosome);
 		int mutation_test(int chromosome, int p);
 
-		//Stopping criteria:
+		//Main functions:
+		void next_generation();
+		chromosome* run_ga_iterations(int n);
 
 		//Types of pointers to member functions
 		typedef int (lcsc::genetic_algorithm::*MutFn)(int chromosome);
@@ -35,9 +37,13 @@ namespace lcsc {
 		std::function<int(int)> mutation_function;
 
 	private:
-		std::function<double(double)> & fitness_function_;
-		rng_engine & engine_;
-		std::vector<chromosome*> chromosomes_;
+		std::function<double(double)>& fitness_function_;
+		rng_engine& engine_;
+		std::vector<chromosome*>& chromosomes_;
+		std::vector<chromosome*>& chromosomes2_;
+		int generation_no_;
 		int generation_size_;
+		double recombination_chance_;
+		int elitism_;
 	};
 }

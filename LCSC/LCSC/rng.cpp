@@ -160,5 +160,20 @@ namespace lcsc {
 		}
 		return sigma * y1 + mean;
 	}
+
+	void rng_engine::hussle(std::vector<int>& numbers)
+	{
+		int storage;
+		int index;
+		int n = numbers.size() - 1;
+		while (n > 0)
+		{
+			index = next_int(0, n);
+			storage = numbers[n];
+			numbers[n] = numbers[index];
+			numbers[index] = storage;
+			n--;
+		}
+	}
 	
 } // namespace lcsc

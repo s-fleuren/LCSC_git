@@ -20,6 +20,8 @@ namespace lcsc {
 		//returns a exponentially distributed pseudo random real number with rate parameter lambda
 		double next_normal(double mean, double sigma);
 		//returns a normally distributed pseudo random real number
+		void hussle(std::vector<int>& numbers);
+		//rearranges the numbers in the vector into a random order
 	};
 
 	class lcrng : public rng_engine {
