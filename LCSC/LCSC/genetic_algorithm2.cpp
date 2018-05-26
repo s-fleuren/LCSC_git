@@ -22,7 +22,7 @@ double genetic_algorithm::compute_total_fitness()
 	double output = 0;
 	for(int i = 0; i < generation_size_; i++)
 	{
-		if (chromosomes_[i]->selected == false)
+		if (chromosomes_[i]->selected_ == false)
 		{
 			output += fitness_function_(chromosomes_[i]->objective_value());
 		}
@@ -36,7 +36,7 @@ chromosome* genetic_algorithm::best_chromosome()
 	{
 		return chromosomes_[0];
 	}
-	int best_fitness = 0;
+	double best_fitness = 0;
 	chromosome* output = nullptr;
 	for (int i = 0; i < generation_size_; i++)
 	{
@@ -58,17 +58,18 @@ int genetic_algorithm::selection_roulette()
 	double sum = 0;
 	for (int i = 0; i < generation_size_; i++)
 	{
-		if (chromosomes_[i]->selected == false)
+		if (chromosomes_[i]->selected_ == false)
 		{
 			sum += fitness_function_(chromosomes_[i]->objective_value());
 			if (sum > S)
 			{
-				chromosomes_[i]->selected = 1;
+				chromosomes_[i]->selected_ = 1;
 				return i;
 			}
 		}
 	}
 	std::cout << "selection failed";
+	exit(1);
 }
 
 int genetic_algorithm::mutation_identity(int chromosome)
@@ -92,28 +93,33 @@ void genetic_algorithm::next_generation()
 		while (p < 2 and index < generation_size_)
 		{
 			selected_index = selection_roulette();
-			if (selected_index >= elitism_)
-			{
-				chromosomes2_[index]->clone(chromosomes_[selected_index]);
-				index++;
-			}
 			if (engine_.next_double() < recombination_chance_)
 			{
 				parents[p] = chromosomes_[selected_index];
 				p++;
 			}
+			if (selected_index >= elitism_)
+			{
+				chromosomes2_[index]->clone(chromosomes_[selected_index]);
+				index++;
+			}
 		}
 		if (index < generation_size_)
 		{
-			parents[0]->recombine(parents[1], 10);
-			p = 0;
 			chromosomes2_[index]->clone(parents[0]);
 			index++;
 			if (index < generation_size_)
 			{
 				chromosomes2_[index]->clone(parents[1]);
+				chromosomes2_[index - 1]->recombine(chromosomes2_[index]);
 				index++;
 			}
+			else
+			{
+				chromosomes_.back()->clone(parents[1]);
+				chromosomes2_[index - 1]->recombine(chromosomes_.back());
+			}
+			p = 0;
 		}
 	}
 	for (int i = elitism_; i < generation_size_; i++)
@@ -123,6 +129,10 @@ void genetic_algorithm::next_generation()
 	}
 	std::partial_sort(chromosomes_.begin(), chromosomes_.begin() + elitism_, chromosomes_.end(),
 		[&](auto lhs, auto rhs) {return lhs->objective_value() > rhs->objective_value(); });
+	for (int i = 0; i < generation_size_; i++)
+	{
+		chromosomes_[i]->selected_ = false;
+	}
 }
 
 chromosome* genetic_algorithm::run_ga_iterations(int n)
@@ -131,6 +141,7 @@ chromosome* genetic_algorithm::run_ga_iterations(int n)
 	{
 		next_generation();
 		chromosomes_[0]->printbits();
+		std::cout << (chromosomes_[0]->objective_value()) << "\n";
 	}
 	return best_chromosome();
 }

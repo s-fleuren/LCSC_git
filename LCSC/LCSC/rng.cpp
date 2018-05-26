@@ -6,7 +6,7 @@ namespace lcsc {
 
 	double lcrng::next_double() {
 		x_ = (a_*x_ + c_) % m_;
-		return x_ / m_;
+		return (double)x_ / m_;
 	}
 
 	uint64_t lcrng::next_int(uint64_t min, uint64_t max) {
@@ -164,8 +164,8 @@ namespace lcsc {
 	void rng_engine::hussle(std::vector<int>& numbers)
 	{
 		int storage;
-		int index;
-		int n = numbers.size() - 1;
+		uint64_t index;
+		auto n = numbers.size() - 1;
 		while (n > 0)
 		{
 			index = next_int(0, n);

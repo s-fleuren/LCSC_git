@@ -42,7 +42,7 @@ namespace lcsc {
 		std::vector<chromosome*>& chromosomes_;
 		std::vector<chromosome*>& chromosomes2_;
 		int generation_no_;
-		int generation_size_;
+		size_t generation_size_;
 		double recombination_chance_;
 		int elitism_;
 	};

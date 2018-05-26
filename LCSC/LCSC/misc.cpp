@@ -51,7 +51,7 @@ namespace lcsc {
 		uint64_t prime;
 		double factor;
 		auto output = std::vector<double>(d);
-		int nCopy;
+		uint64_t nCopy;
 		for (int i = 0; i < d; i++)
 		{
 			nCopy = n;
