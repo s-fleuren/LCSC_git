@@ -124,7 +124,7 @@ void genetic_algorithm::next_generation()
 	}
 	for (int i = elitism_; i < generation_size_; i++)
 	{
-		chromosomes2_[i]->mutate(0.5);
+		chromosomes2_[i]->mutate();
 		std::swap(chromosomes_[i], chromosomes2_[i]);
 	}
 	std::partial_sort(chromosomes_.begin(), chromosomes_.begin() + elitism_, chromosomes_.end(),

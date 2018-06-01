@@ -6,5 +6,6 @@
 #include "misc.hpp"
 #include "integration.hpp"
 #include "chromosome.hpp"
-//#include "genetic_algorithm.hpp"
+#include "mutation.hpp"
+#include "recombination.hpp"
 #include "genetic_algorithm2.hpp"

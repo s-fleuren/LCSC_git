@@ -152,6 +152,8 @@
     <ClInclude Include="integration.hpp" />
     <ClInclude Include="lcsc.hpp" />
     <ClInclude Include="misc.hpp" />
+    <ClInclude Include="mutation.hpp" />
+    <ClInclude Include="recombination.hpp" />
     <ClInclude Include="rng.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -163,6 +165,8 @@
     <ClCompile Include="integration.cpp" />
     <ClCompile Include="LCSC.cpp" />
     <ClCompile Include="misc.cpp" />
+    <ClCompile Include="mutation.cpp" />
+    <ClCompile Include="recombination.cpp" />
     <ClCompile Include="rng.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -31,7 +31,7 @@ namespace lcsc {
 		return (uint64_t)(next_double()*range + min);
 	}
 
-	uint64_t park_miller::next_int(uint64_t min = 0, uint64_t max = (1 << 31) - 2) {
+	uint64_t park_miller::next_int(uint64_t min = 0, uint64_t max = -2) {
 		if (min > max)
 		{
 			printf("Error: value of min is greater than the value of max. Press enter to exit.");
@@ -94,7 +94,7 @@ namespace lcsc {
 
 	double xorshift::next_double() {
 		uint64_t x = next_int();
-		uint64_t m = (((uint64_t)1 << 64) - 1);
+		uint64_t m = -1;
 		return (double)x / m;
 	}
 

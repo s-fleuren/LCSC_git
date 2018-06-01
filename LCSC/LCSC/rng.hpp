@@ -58,7 +58,7 @@ namespace lcsc {
 	class park_miller : public rng_engine {
 	public:
 		park_miller(uint64_t seed) :
-			a_(16807), m_((1 << 31) - 1), x_(seed), q_(m_ / a_), r_(m_ % a_) {}
+			a_(16807), m_(-1), x_(seed), q_(m_ / a_), r_(m_ % a_) {}
 
 		uint64_t next_int(uint64_t min, uint64_t max) override;
 
