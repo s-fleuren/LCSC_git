@@ -86,6 +86,7 @@ namespace lcsc {
 	{
 		length_ = length;
 		mutpimpl_ = std::move(mutpimpl);
+		recpimpl_ = std::move(recpimpl);
 		selected_ = 0;
 		objective_value_computed_ = false;
 		objective_value_ = 0;

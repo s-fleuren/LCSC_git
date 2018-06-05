@@ -149,11 +149,13 @@
   <ItemGroup>
     <ClInclude Include="chromosome.hpp" />
     <ClInclude Include="genetic_algorithm2.hpp" />
+    <ClInclude Include="graph.hpp" />
     <ClInclude Include="integration.hpp" />
     <ClInclude Include="lcsc.hpp" />
     <ClInclude Include="misc.hpp" />
     <ClInclude Include="mutation.hpp" />
     <ClInclude Include="recombination.hpp" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="rng.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -162,6 +164,7 @@
   <ItemGroup>
     <ClCompile Include="chromosome.cpp" />
     <ClCompile Include="genetic_algorithm2.cpp" />
+    <ClCompile Include="graph.cpp" />
     <ClCompile Include="integration.cpp" />
     <ClCompile Include="LCSC.cpp" />
     <ClCompile Include="misc.cpp" />
@@ -175,6 +178,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="tests.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="graph.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

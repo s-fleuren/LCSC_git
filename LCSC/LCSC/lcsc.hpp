@@ -9,3 +9,4 @@
 #include "mutation.hpp"
 #include "recombination.hpp"
 #include "genetic_algorithm2.hpp"
+#include "graph.hpp"
