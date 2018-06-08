@@ -140,7 +140,7 @@ chromosome* genetic_algorithm::run_ga_iterations(int n)
 	for (int i = 0; i < n; i++)
 	{
 		next_generation();
-		chromosomes_[0]->printbits();
+		//chromosomes_[0]->printbits();
 		std::cout << (chromosomes_[0]->objective_value()) << "\n";
 	}
 	return best_chromosome();

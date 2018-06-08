@@ -1,0 +1,131 @@
+std::function<double(std::vector<uint64_t>&)> objective_function = [&](std::vector<uint64_t>& n) -> double { 
+		double sum = 0;
+		size_t vertex;
+		bool has_edge;
+		for (int outer = 0; outer < (g.size_V >> 6); outer++)
+		{
+			for (int inner = 0; inner < 64; inner++)
+			{
+				vertex = 64 * outer + inner;
+				if ((n[outer] & ((uint64_t)1 << inner)) != 0)
+				{
+					has_edge = false;
+					for (int i = 0; i < g.neighbours_outer[vertex]->size(); i++)
+					{
+						if ((n[g.neighbours_outer[vertex]->at(i)] & g.neighbours_bits[vertex]->at(i)) != 0)
+						{
+							has_edge = true;
+							break;
+						}
+					}
+					if (!has_edge) sum += 1;
+				}
+			}
+		}
+		for (int inner = 0; inner < g.size_V % 64; inner++)
+		{
+			vertex = (g.size_V >> 6) * 64 + inner;
+			if ((n.back() & ((uint64_t)1 << inner)) != 0)
+			{
+				has_edge = false;
+				for (int i = 0; i < g.neighbours_outer[vertex]->size(); i++)
+				{
+					if ((n[g.neighbours_outer[vertex]->at(i)] & g.neighbours_bits[vertex]->at(i)) != 0)
+					{
+						has_edge = true;
+						break;
+					}
+				}
+				if (!has_edge) sum += 1;
+			}
+		}
+		return sum;
+	};
+
+std::function<double(std::vector<uint64_t>&)> objective_function = [&](std::vector<uint64_t>& n) -> double { 
+		double sum = 0;
+		size_t vertex;
+		bool has_edge;
+		for (int outer = 0; outer < (g.size_V >> 6); outer++)
+		{
+			for (int inner = 0; inner < 64; inner++)
+			{
+				vertex = 64 * outer + inner;
+				if ((n[outer] & ((uint64_t)1 << inner)) != 0)
+				{
+					has_edge = false;
+					for (int i = 0; i < g.neighbours_outer[vertex]->size(); i++)
+					{
+						if ((n[g.neighbours_outer[vertex]->at(i)] & g.neighbours_bits[vertex]->at(i)) != 0)
+						{
+							has_edge = true;
+							break;
+						}
+					}
+					if (!has_edge) sum += 1;
+					else sum += (double)1 / (g.degree[vertex] + 1);
+				}
+			}
+		}
+		for (int inner = 0; inner < g.size_V % 64; inner++)
+		{
+			vertex = (g.size_V >> 6) * 64 + inner;
+			if ((n.back() & ((uint64_t)1 << inner)) != 0)
+			{
+				has_edge = false;
+				for (int i = 0; i < g.neighbours_outer[vertex]->size(); i++)
+				{
+					if ((n[g.neighbours_outer[vertex]->at(i)] & g.neighbours_bits[vertex]->at(i)) != 0)
+					{
+						has_edge = true;
+						break;
+					}
+				}
+				if (!has_edge) sum += 1;
+				else sum += (double)1 / (g.degree[vertex] + 1);
+			}
+		}
+		return sum;
+	};
+
+std::function<double(std::vector<uint64_t>&)> objective_function = [&](std::vector<uint64_t>& n) -> double { 
+		double sum = 0;
+		size_t vertex, degree;
+		for (int outer = 0; outer < (g.size_V >> 6); outer++)
+		{
+			for (int inner = 0; inner < 64; inner++)
+			{
+				vertex = 64 * outer + inner;
+				if ((n[outer] & ((uint64_t)1 << inner)) != 0)
+				{
+					degree = 0;
+					for (int i = 0; i < g.neighbours_outer[vertex]->size(); i++)
+					{
+						if ((n[g.neighbours_outer[vertex]->at(i)] & g.neighbours_bits[vertex]->at(i)) != 0)
+						{
+							degree++;
+						}
+					}
+					sum += (double)1 / (degree + 1);
+				}
+			}
+		}
+		for (int inner = 0; inner < g.size_V % 64; inner++)
+		{
+			vertex = (g.size_V >> 6) * 64 + inner;
+			if ((n.back() & ((uint64_t)1 << inner)) != 0)
+			{
+				degree = 0;
+				for (int i = 0; i < g.neighbours_outer[vertex]->size(); i++)
+				{
+					if ((n[g.neighbours_outer[vertex]->at(i)] & g.neighbours_bits[vertex]->at(i)) != 0)
+					{
+						degree++;
+					}
+				}
+				sum += (double)1 / (degree + 1);
+			}
+		}
+		return sum;
+	};
+

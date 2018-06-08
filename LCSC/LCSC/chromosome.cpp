@@ -180,4 +180,17 @@ namespace lcsc {
 		output.back() = engine.next_int(0, ((uint64_t)1 << end_bits_size) - 1);
 		return output;
 	}
+
+	std::vector<uint64_t> one_bits_vector(int length)
+	{
+		int output_size = (length >> 6) + 1;
+		int end_bits_size = length % 64;
+		auto output = std::vector<uint64_t>(output_size);
+		for (int i = 0; i < output_size - 1; i++)
+		{
+			output[i] = -1;
+		}
+		output.back() = ((uint64_t)1 << end_bits_size) - 1;
+		return output;
+	}
 }

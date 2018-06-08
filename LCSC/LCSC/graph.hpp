@@ -10,9 +10,17 @@ namespace lcsc {
 	class graph {
 	public:
 		graph(std::string filename);
-		std::unordered_map<std::string, size_t> vertex_dict;
-		std::vector<std::vector<size_t>*> neighbours;
-		size_t size_V;
-		std::vector<size_t> degree;
+		graph(std::vector<uint64_t> bitstring, graph supergraph);
+		void remove_node(int u);
+
+		std::vector<char> is_node;
+		std::vector<std::vector<int>*> neighbours;
+		int size_V;
+		int size_E;
+		std::vector<int> degree;
+		std::vector<std::vector<int>*> neighbours_outer;
+		std::vector<std::vector<uint64_t>*> neighbours_bits;
+		std::vector<uint64_t> bits;
+
 	};
 }

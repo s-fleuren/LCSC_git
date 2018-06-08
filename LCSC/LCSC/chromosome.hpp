@@ -112,4 +112,5 @@ namespace lcsc {
 	};
 
 	std::vector<uint64_t> random_bits_vector(int length, rng_engine& engine);
+	std::vector<uint64_t> one_bits_vector(int length);
 }
