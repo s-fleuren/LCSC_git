@@ -22,5 +22,26 @@ namespace lcsc {
 		std::vector<std::vector<uint64_t>*> neighbours_bits;
 		std::vector<uint64_t> bits;
 
+		graph& operator=(const graph& other)
+		{
+			is_node = other.is_node;
+			size_V = other.size_V;
+			size_E = other.size_E;
+			degree = other.degree;
+			bits = other.bits;
+			neighbours.clear();
+			neighbours_outer.clear();
+			neighbours_bits.clear();
+			for (int i = 0; i < size_V; i++)
+			{
+				neighbours.push_back(new std::vector<int>(0));
+				*neighbours[i] = *other.neighbours[i];
+				neighbours_outer.push_back(new std::vector<int>(0));
+				*neighbours_outer[i] = *other.neighbours_outer[i];
+				neighbours_bits.push_back(new std::vector<uint64_t>(0));
+				*neighbours_bits[i] = *other.neighbours_bits[i];
+			}
+			return *this;
+		}
 	};
 }

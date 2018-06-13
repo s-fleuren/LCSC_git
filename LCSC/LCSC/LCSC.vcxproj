@@ -154,6 +154,7 @@
     <ClInclude Include="lcsc.hpp" />
     <ClInclude Include="misc.hpp" />
     <ClInclude Include="mutation.hpp" />
+    <ClInclude Include="objective_function.hpp" />
     <ClInclude Include="recombination.hpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="rng.hpp" />
@@ -169,6 +170,7 @@
     <ClCompile Include="LCSC.cpp" />
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="mutation.cpp" />
+    <ClCompile Include="objective_function.cpp" />
     <ClCompile Include="recombination.cpp" />
     <ClCompile Include="rng.cpp" />
     <ClCompile Include="stdafx.cpp">

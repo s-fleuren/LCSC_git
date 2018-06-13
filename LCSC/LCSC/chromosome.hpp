@@ -81,16 +81,12 @@ namespace lcsc {
 
 		bitstring& operator=(const bitstring& other)
 		{
-			objective_function_ = other.objective_function_;
-			engine_ = other.engine_;
 			for (int i = 0; i < bits_size_; i++)
 			{
 				bits[i] = other.bits[i];
 			}
-			length_ = other.length_;
 			selected_ = other.selected_;
-			bits_size_ = other.bits_size_;
-			end_bits_length_ = other.end_bits_length_;
+			objective_value_computed_ = other.objective_value_computed_;
 			return *this;
 		}
 

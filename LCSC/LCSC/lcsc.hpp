@@ -10,3 +10,4 @@
 #include "recombination.hpp"
 #include "genetic_algorithm2.hpp"
 #include "graph.hpp"
+#include "objective_function.hpp"
