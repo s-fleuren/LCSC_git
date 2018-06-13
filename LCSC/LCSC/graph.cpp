@@ -10,7 +10,6 @@ namespace lcsc {
 		int word_number;
 		size_V = 0;
 		int u, v;
-		bool edge_found;
 		if (graph_file.is_open())
 		{
 			while (getline(graph_file, line))
@@ -73,7 +72,7 @@ namespace lcsc {
 			}
 			graph_file.close();
 			int v_inner, v_outer;
-			int index;
+			uint64_t index;
 			for (u = 0; u < size_V; u++)
 			{
 				for (auto v : *neighbours[u])
@@ -122,8 +121,8 @@ namespace lcsc {
 	{
 		int inner = u % 64;
 		int outer = (u >> 6);
-		uint64_t bit = (1 << inner);
-		int index;
+		uint64_t bit = ((uint64_t)1 << inner);
+		uint64_t index;
 		for (auto v : *neighbours[u]) {
 			neighbours[v]->erase(find(neighbours[v]->begin(), neighbours[v]->end(), u));
 			degree[v]--;

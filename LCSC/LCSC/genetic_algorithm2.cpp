@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <algorithm>
+#include <chrono>
 
 using namespace lcsc;
 
@@ -144,6 +145,36 @@ chromosome* genetic_algorithm::run_ga_iterations(int n)
 		std::cout << (chromosomes_[0]->objective_value()) << "\n";
 	}
 	return best_chromosome();
+}
+
+chromosome * lcsc::genetic_algorithm::timed_experiment(std::chrono::seconds duration, std::chrono::seconds sample_moment, 
+	std::string filename)
+{
+	std::ofstream output_file;
+	output_file.open(filename, std::ios_base::app);
+	auto start = std::chrono::steady_clock::now();
+	auto sample = std::chrono::steady_clock::now();
+	while (std::chrono::steady_clock::now() - start < duration)
+	{
+		sample = std::chrono::steady_clock::now();
+		std::chrono::duration<double> delta = sample - start;
+		output_file << delta.count() << ' ' << (chromosomes_[0]->objective_value()) << ' ' 
+			<< generation_no_ << '\n';
+		while (std::chrono::steady_clock::now() - sample < sample_moment)
+		{
+			next_generation();
+		}
+	}
+	while (std::chrono::steady_clock::now() - sample < sample_moment)
+	{
+		next_generation();
+	}
+	sample = std::chrono::steady_clock::now();
+	std::chrono::duration<double> delta = sample - start;
+	output_file << delta.count() << ' ' << (chromosomes_[0]->objective_value()) << ' '
+		<< generation_no_ << '\n';
+	output_file.close();
+	return chromosomes_[0];
 }
 
 void genetic_algorithm::configure_mutation_function(MutFn fptr)

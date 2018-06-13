@@ -109,6 +109,9 @@
     <Text Include="objective function.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="output.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="1138_bus.mtx">

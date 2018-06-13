@@ -3,6 +3,7 @@
 #include <functional>
 #include <vector>
 #include <memory>
+#include <chrono>
 
 namespace lcsc {
 	class genetic_algorithm{
@@ -24,6 +25,7 @@ namespace lcsc {
 		//Main functions:
 		void next_generation();
 		chromosome* run_ga_iterations(int n);
+		chromosome* timed_experiment(std::chrono::seconds duration, std::chrono::seconds sample_moment, std::string filename);
 
 		//Types of pointers to member functions
 		typedef int (lcsc::genetic_algorithm::*MutFn)(int chromosome);

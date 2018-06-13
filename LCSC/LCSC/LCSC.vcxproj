@@ -184,6 +184,7 @@
   <ItemGroup>
     <Text Include="graph.txt" />
     <Text Include="objective function.txt" />
+    <Text Include="output.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="1138_bus.mtx" />
