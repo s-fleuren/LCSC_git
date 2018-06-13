@@ -29,7 +29,8 @@ namespace lcsc {
 
 	std::vector<double> haltonCompute(std::vector<uint64_t> &primes, int d, int n);
 
-	int highestOneBit(uint64_t i);
+	uint64_t highestOneBit(uint64_t i);
+	int log_2(uint64_t i);
 
 
 } // namespace lcsc

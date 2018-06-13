@@ -1,18 +1,22 @@
 #include "stdafx.h"
-#include <intrin.h>
+//#include <intrin.h>
 
 namespace lcsc {
 
-	int lcsc::highestOneBit(uint64_t i) {
+	uint64_t highestOneBit(uint64_t i) {
 		i |= (i >> 1);
 		i |= (i >> 2);
 		i |= (i >> 4);
 		i |= (i >> 8);
 		i |= (i >> 16);
 		i |= (i >> 32);
-		unsigned long index;
-		_BitScanReverse64(&index, ((uint64_t)1 << 63) - 1);
-		return index;
+		return i - (i >> 1);
+	}
+
+	int log_2(uint64_t i) {
+		int output = 0;
+		while (i >>= 1) output++;
+		return output;
 	}
 
 	std::vector<uint64_t> primeVector(int length)

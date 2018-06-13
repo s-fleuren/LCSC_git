@@ -1,9 +1,8 @@
 #include "stdafx.h"
-#include <intrin.h>
+//#include <intrin.h>
 #include <math.h>
 
 namespace lcsc {
-
 	double lcrng::next_double() {
 		x_ = (a_*x_ + c_) % m_;
 		return (double)x_ / m_;
@@ -50,8 +49,7 @@ namespace lcsc {
 			x_ = (a_ * (x_ % q_) - r_ * (x_ / q_) + m_) % m_;//Schrage’s trick
 			return x_ + min;
 		}
-		unsigned long index;
-		_BitScanReverse64(&index, range);//2**index <= range < 2**(index+1)
+		int index = log_2(range);
 		while (1 > 0)
 		{
 			x_ = (a_ * (x_ % q_) - r_ * (x_ / q_) + m_) % m_;
@@ -80,8 +78,8 @@ namespace lcsc {
 			x_ ^= x_ >> 27;
 			return x_;
 		}
-		unsigned long index;
-		_BitScanReverse64(&index, range);//2**index <= range < 2**(index+1)
+		int index = log_2(range);
+		//_BitScanReverse64(&index, range);//2**index <= range < 2**(index+1)
 		while (1 > 0)
 		{
 			x_ ^= x_ >> 12;
