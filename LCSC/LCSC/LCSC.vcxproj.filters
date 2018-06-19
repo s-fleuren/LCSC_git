@@ -19,6 +19,9 @@
     <Filter Include="Source Files\rng">
       <UniqueIdentifier>{6aaed40c-237d-4829-a426-2af0de9fcfdc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\graphs">
+      <UniqueIdentifier>{020e68a2-8266-4ef6-b6f9-b2dfa90ffa2c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -116,6 +119,18 @@
   <ItemGroup>
     <None Include="1138_bus.mtx">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="graph1.col">
+      <Filter>Source Files\graphs</Filter>
+    </None>
+    <None Include="graph2.col">
+      <Filter>Source Files\graphs</Filter>
+    </None>
+    <None Include="graph3.col">
+      <Filter>Source Files\graphs</Filter>
+    </None>
+    <None Include="graph4.col">
+      <Filter>Source Files\graphs</Filter>
     </None>
   </ItemGroup>
 </Project>

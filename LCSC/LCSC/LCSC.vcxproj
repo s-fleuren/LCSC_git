@@ -188,6 +188,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="1138_bus.mtx" />
+    <None Include="graph1.col" />
+    <None Include="graph2.col" />
+    <None Include="graph3.col" />
+    <None Include="graph4.col" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

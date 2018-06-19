@@ -18,25 +18,10 @@ namespace lcsc {
 		//Selection functions:
 		int selection_roulette();
 
-		//Mutation functions:
-		int mutation_identity(int chromosome);
-		int mutation_test(int chromosome, int p);
-
 		//Main functions:
 		void next_generation();
 		chromosome* run_ga_iterations(int n);
 		chromosome* timed_experiment(std::chrono::seconds duration, std::chrono::seconds sample_moment, std::string filename);
-
-		//Types of pointers to member functions
-		typedef int (lcsc::genetic_algorithm::*MutFn)(int chromosome);
-		typedef int (lcsc::genetic_algorithm::*MutFnP)(int chromosome, int p);
-
-		//Functions for deciding which methods to use in the genetic algorithm
-		void configure_mutation_function(MutFn fptr);
-		void configure_mutation_function(MutFnP fptr, int p);
-
-
-		std::function<int(int)> mutation_function;
 
 	private:
 		std::function<double(double)>& fitness_function_;

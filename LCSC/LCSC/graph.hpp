@@ -18,6 +18,7 @@ namespace lcsc {
 		int size_V;
 		int size_E;
 		std::vector<int> degree;
+		std::vector<double> inclusion_value;
 		std::vector<std::vector<int>*> neighbours_outer;
 		std::vector<std::vector<uint64_t>*> neighbours_bits;
 		std::vector<uint64_t> bits;
@@ -28,6 +29,7 @@ namespace lcsc {
 			size_V = other.size_V;
 			size_E = other.size_E;
 			degree = other.degree;
+			inclusion_value = other.inclusion_value;
 			bits = other.bits;
 			neighbours.clear();
 			neighbours_outer.clear();

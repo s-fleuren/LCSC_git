@@ -38,6 +38,7 @@ namespace lcsc {
 					{
 						neighbours.push_back(new std::vector<int>(0));
 						degree.push_back(0);
+						inclusion_value.push_back(0);
 						neighbours_outer.push_back(new std::vector<int>(0));
 						neighbours_bits.push_back(new std::vector<uint64_t>(0));
 						is_node.push_back(1);
@@ -93,6 +94,20 @@ namespace lcsc {
 				}
 			}
 			bits = one_bits_vector(size_V);
+			int value;
+			for (int u = 0; u < size_V; u++)
+			{
+				value = 0;
+				for (auto v : *neighbours[u])
+				{
+					if (degree[v] != 0 && degree[v] <= degree[u] && degree[u] > value)
+					{
+						value = degree[v];
+					}
+				}
+				if (value == 0) value = degree[u];
+				inclusion_value[u] = (double)1 / (value + 1);
+			}
 		}
 		else
 		{

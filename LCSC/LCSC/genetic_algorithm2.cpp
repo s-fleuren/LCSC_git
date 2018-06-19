@@ -8,7 +8,6 @@ genetic_algorithm::genetic_algorithm(std::function<double(double)>& fitness_func
 	std::vector<chromosome*>& chromosomes, std::vector<chromosome*>& chromosomes2, double recombination_chance, int elitism) :
 	fitness_function_(fitness_function), engine_(engine), chromosomes_(chromosomes), chromosomes2_(chromosomes2)
 	{
-		mutation_function = [&](int n) -> int { return n; };
 		generation_no_ = 0;
 		generation_size_ = chromosomes.size();
 		recombination_chance_ = recombination_chance;
@@ -73,16 +72,6 @@ int genetic_algorithm::selection_roulette()
 	exit(1);
 }
 
-int genetic_algorithm::mutation_identity(int chromosome)
-{
-	return chromosome;
-}
-
-int genetic_algorithm::mutation_test(int chromosome, int p)
-{
-	return chromosome + p;
-}
-
 void genetic_algorithm::next_generation()
 {
 	int p = 0;
@@ -134,6 +123,7 @@ void genetic_algorithm::next_generation()
 	{
 		chromosomes_[i]->selected_ = false;
 	}
+	generation_no_++;
 }
 
 chromosome* genetic_algorithm::run_ga_iterations(int n)
@@ -142,7 +132,7 @@ chromosome* genetic_algorithm::run_ga_iterations(int n)
 	{
 		next_generation();
 		//chromosomes_[0]->printbits();
-		std::cout << (chromosomes_[0]->objective_value()) << "\n";
+		//std::cout << (chromosomes_[0]->objective_value()) << "\n";
 	}
 	return best_chromosome();
 }
@@ -175,16 +165,4 @@ chromosome * lcsc::genetic_algorithm::timed_experiment(std::chrono::seconds dura
 		<< generation_no_ << '\n';
 	output_file.close();
 	return chromosomes_[0];
-}
-
-void genetic_algorithm::configure_mutation_function(MutFn fptr)
-{
-	mutation_function = [this, fptr](int chromosome) -> 
-		int { return (this->*fptr)(chromosome); };
-}
-
-void genetic_algorithm::configure_mutation_function(MutFnP fptr, int p)
-{
-	mutation_function = [this, fptr, p](int chromosome) -> 
-		int { return (this->*fptr)(chromosome, p); };
 }
