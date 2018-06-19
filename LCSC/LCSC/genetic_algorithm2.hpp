@@ -23,12 +23,12 @@ namespace lcsc {
 		chromosome* run_ga_iterations(int n);
 		chromosome* timed_experiment(std::chrono::seconds duration, std::chrono::seconds sample_moment, std::string filename);
 
+		int generation_no;
 	private:
 		std::function<double(double)>& fitness_function_;
 		rng_engine& engine_;
 		std::vector<chromosome*>& chromosomes_;
 		std::vector<chromosome*>& chromosomes2_;
-		int generation_no_;
 		size_t generation_size_;
 		double recombination_chance_;
 		int elitism_;

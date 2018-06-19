@@ -8,7 +8,7 @@ genetic_algorithm::genetic_algorithm(std::function<double(double)>& fitness_func
 	std::vector<chromosome*>& chromosomes, std::vector<chromosome*>& chromosomes2, double recombination_chance, int elitism) :
 	fitness_function_(fitness_function), engine_(engine), chromosomes_(chromosomes), chromosomes2_(chromosomes2)
 	{
-		generation_no_ = 0;
+		generation_no = 0;
 		generation_size_ = chromosomes.size();
 		recombination_chance_ = recombination_chance;
 		elitism_ = elitism;
@@ -123,7 +123,7 @@ void genetic_algorithm::next_generation()
 	{
 		chromosomes_[i]->selected_ = false;
 	}
-	generation_no_++;
+	generation_no++;
 }
 
 chromosome* genetic_algorithm::run_ga_iterations(int n)
@@ -149,7 +149,7 @@ chromosome * lcsc::genetic_algorithm::timed_experiment(std::chrono::seconds dura
 		sample = std::chrono::steady_clock::now();
 		std::chrono::duration<double> delta = sample - start;
 		output_file << delta.count() << ' ' << (chromosomes_[0]->objective_value()) << ' ' 
-			<< generation_no_ << '\n';
+			<< generation_no << '\n';
 		while (std::chrono::steady_clock::now() - sample < sample_moment)
 		{
 			next_generation();
@@ -162,7 +162,7 @@ chromosome * lcsc::genetic_algorithm::timed_experiment(std::chrono::seconds dura
 	sample = std::chrono::steady_clock::now();
 	std::chrono::duration<double> delta = sample - start;
 	output_file << delta.count() << ' ' << (chromosomes_[0]->objective_value()) << ' '
-		<< generation_no_ << '\n';
+		<< generation_no << "\n\n";
 	output_file.close();
 	return chromosomes_[0];
 }
