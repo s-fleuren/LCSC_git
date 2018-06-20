@@ -32,7 +32,6 @@ int main() {
   graph_t g = geng_stringtograph(geng_getline(fp));
   graph_show(g);
   graph_t gc = graph_new(nnodes(g));
-  graph_show(gc);
   graph_complement(gc, g);
   printf("%d\n", graph_clique_number(gc));
   //printf("mean=%g\n",histogram_mean(h));
